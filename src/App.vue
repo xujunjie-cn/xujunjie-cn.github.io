@@ -10,8 +10,8 @@ import SkillsSection from './components/SkillsSection.vue'
 const nav = [
   { id: 'home', label: '首页' },
   { id: 'projects', label: '项目' },
-  { id: 'experience', label: '经历' },
   { id: 'skills', label: '技术栈' },
+  { id: 'experience', label: '履历' },
 ]
 
 const scrolled = ref(false)
@@ -84,8 +84,8 @@ function scrollTo(id) {
     <main>
       <HeroSection :profile="site.profile" />
       <ProjectsSection :projects="site.projects" />
-      <ExperienceSection :experience="site.experience" />
       <SkillsSection :skills="site.skills" />
+      <ExperienceSection :experience="site.experience" />
     </main>
 
     <footer class="footer">
@@ -97,5 +97,12 @@ function scrollTo(id) {
         </a>
       </p>
     </footer>
+
+    <button class="to-top" v-show="scrolled" @click="scrollTo('home')" aria-label="回到顶部">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 19V5M5 12l7-7 7 7" />
+      </svg>
+    </button>
   </div>
 </template>
