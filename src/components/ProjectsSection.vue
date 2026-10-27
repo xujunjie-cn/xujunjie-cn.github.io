@@ -4,10 +4,13 @@ defineProps({ projects: Array })
 
 <template>
   <section id="projects" class="section">
-    <div class="sec-head" v-reveal>
-      <span class="sec-kicker">PROJECTS</span>
-      <h2 class="sec-title">核心项目</h2>
-      <p class="sec-sub">4 套系统，拆到能被追问的技术点</p>
+    <div class="sec-head sec-head--left" v-reveal>
+      <span class="sec-num">02</span>
+      <div>
+        <span class="sec-kicker">Projects</span>
+        <h2 class="sec-title">核心项目</h2>
+        <p class="sec-sub">5 套系统，拆到能被追问的技术点</p>
+      </div>
     </div>
 
     <div class="list">
@@ -54,8 +57,6 @@ defineProps({ projects: Array })
   display: flex;
   flex-direction: column;
   gap: 22px;
-  max-width: 1040px;
-  margin: 0 auto;
 }
 .proj {
   position: relative;
@@ -93,12 +94,13 @@ defineProps({ projects: Array })
 .proj__top {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
+  gap: 12px;
   margin-bottom: 14px;
 }
 .proj__no {
-  font-size: 30px;
-  font-weight: 800;
+  font-family: var(--font-mono);
+  font-size: 24px;
+  font-weight: 700;
   line-height: 1;
   letter-spacing: -1px;
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
@@ -107,9 +109,11 @@ defineProps({ projects: Array })
   color: transparent;
 }
 .proj__year {
-  font-size: 11.5px;
+  font-family: var(--font-mono);
+  font-size: 11px;
   color: var(--text-dim);
-  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.2px;
+  opacity: 0.9;
 }
 .proj__sub {
   font-size: 11.5px;
@@ -130,7 +134,7 @@ defineProps({ projects: Array })
 }
 .proj__desc {
   margin: 12px 0 16px;
-  font-size: 13px;
+  font-size: 13.5px;
   line-height: 1.75;
   color: var(--text-dim);
 }

@@ -4,10 +4,13 @@ defineProps({ experience: Array })
 
 <template>
   <section id="experience" class="section">
-    <div class="sec-head" v-reveal>
-      <span class="sec-kicker">BACKGROUND</span>
-      <h2 class="sec-title">履历</h2>
-      <p class="sec-sub">工作与教育，简单带过</p>
+    <div class="sec-head sec-head--left" v-reveal>
+      <span class="sec-num">04</span>
+      <div>
+        <span class="sec-kicker">Background</span>
+        <h2 class="sec-title">履历</h2>
+        <p class="sec-sub">工作与教育，简单带过</p>
+      </div>
     </div>
 
     <div class="exp">
@@ -35,38 +38,58 @@ defineProps({ experience: Array })
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 18px;
-  max-width: 1040px;
-  margin: 0 auto;
 }
 .exp__card {
   border-radius: 16px;
-  padding: 20px 22px;
-  transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 22px 24px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s ease;
+}
+.exp__card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 .exp__card:hover {
   border-color: var(--accent);
   transform: translateY(-3px);
+  box-shadow: 0 20px 44px -28px var(--shadow);
+}
+.exp__card:hover::before {
+  opacity: 1;
 }
 .exp__period {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 12px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
   font-weight: 600;
   color: var(--accent);
-  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.3px;
 }
 .exp__now {
-  font-size: 10.5px;
+  font-family: var(--font-mono);
+  font-size: 10px;
   padding: 1px 7px;
   border-radius: 999px;
   background: var(--accent-soft);
   color: var(--accent);
+  letter-spacing: 0.6px;
 }
 .exp__role {
-  margin: 10px 0 3px;
-  font-size: 16px;
+  margin: 11px 0 3px;
+  font-size: 16.5px;
   font-weight: 700;
+  letter-spacing: -0.2px;
 }
 .exp__org {
   font-size: 12.5px;

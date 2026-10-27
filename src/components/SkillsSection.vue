@@ -15,22 +15,25 @@ const icons = [
 
 <template>
   <section id="skills" class="section">
-    <div class="sec-head" v-reveal>
-      <span class="sec-kicker">SKILLS</span>
-      <h2 class="sec-title">技术栈</h2>
-      <p class="sec-sub">日常使用的技术，以及已经落到项目里的能力</p>
+    <div class="sec-head sec-head--left" v-reveal>
+      <span class="sec-num">03</span>
+      <div>
+        <span class="sec-kicker">Skills</span>
+        <h2 class="sec-title">技术栈</h2>
+        <p class="sec-sub">日常使用的技术，以及已经落到项目里的能力</p>
+      </div>
     </div>
 
-    <div class="skills">
+    <div class="skill-rows">
       <div
         v-for="(g, i) in skills"
-        :key="i"
+        :key="g.group"
         v-reveal
-        class="skill glass"
-        :style="{ transitionDelay: i * 80 + 'ms' }"
+        class="skill-row"
+        :style="{ transitionDelay: i * 55 + 'ms' }"
       >
-        <div class="skill__head">
-          <span class="skill__icon">
+        <div class="skill-row__label">
+          <span class="skill-row__icon">
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -42,9 +45,9 @@ const icons = [
               <path :d="icons[i % icons.length]" />
             </svg>
           </span>
-          <h3 class="skill__group">{{ g.group }}</h3>
+          <span>{{ g.group }}</span>
         </div>
-        <div class="skill__items">
+        <div class="skill-row__items">
           <span v-for="item in g.items" :key="item" class="pill">{{ item }}</span>
         </div>
       </div>
@@ -53,62 +56,53 @@ const icons = [
 </template>
 
 <style scoped>
-.skills {
+.skill-rows {
+  border-top: 1px solid var(--border);
+}
+.skill-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 20px;
-  max-width: 1040px;
-  margin: 0 auto;
+  grid-template-columns: 168px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.28s ease;
 }
-.skill {
-  position: relative;
-  border-radius: 18px;
-  padding: 22px 24px;
-  transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.3s ease;
+.skill-row:hover {
+  background: linear-gradient(90deg, var(--accent-soft), transparent 70%);
 }
-.skill:hover {
-  border-color: var(--accent);
-  transform: translateY(-3px);
-  box-shadow: 0 18px 40px -24px var(--shadow), 0 0 30px -12px var(--accent-soft);
-}
-.skill__head {
+.skill-row__label {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 16px;
+  gap: 9px;
+  font-size: 13.5px;
+  font-weight: 650;
+  color: var(--text);
+  padding-top: 6px;
 }
-.skill__icon {
-  width: 32px;
-  height: 32px;
-  flex: 0 0 32px;
-  border-radius: 10px;
+.skill-row__icon {
+  width: 26px;
+  height: 26px;
+  flex: none;
+  border-radius: 8px;
   display: grid;
   place-items: center;
   background: var(--accent-soft);
   color: var(--accent);
 }
-.skill__icon svg {
-  width: 17px;
-  height: 17px;
+.skill-row__icon svg {
+  width: 14px;
+  height: 14px;
 }
-.skill__group {
-  margin: 0;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 1.2px;
-  color: var(--accent);
-  text-transform: uppercase;
-}
-.skill__items {
+.skill-row__items {
   display: flex;
   flex-wrap: wrap;
-  gap: 9px;
+  gap: 8px;
 }
 .pill {
-  font-size: 13.5px;
-  padding: 7px 13px;
-  border-radius: 10px;
+  font-size: 13px;
+  padding: 6px 13px;
+  border-radius: 9px;
   background: var(--surface-2);
   color: var(--text);
   border: 1px solid transparent;
@@ -120,9 +114,17 @@ const icons = [
   transform: translateY(-1px);
 }
 
-@media (max-width: 860px) {
-  .skills {
+@media (max-width: 720px) {
+  .skill-row {
     grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 18px 0;
+  }
+  .skill-row__label {
+    padding-top: 0;
+  }
+  .skill-row:hover {
+    background: none;
   }
 }
 </style>

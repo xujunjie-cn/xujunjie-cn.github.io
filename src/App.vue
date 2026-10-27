@@ -3,12 +3,14 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { site } from './data/site.js'
 import ThemeToggle from './components/ThemeToggle.vue'
 import HeroSection from './components/HeroSection.vue'
+import HighlightsSection from './components/HighlightsSection.vue'
 import ProjectsSection from './components/ProjectsSection.vue'
 import ExperienceSection from './components/ExperienceSection.vue'
 import SkillsSection from './components/SkillsSection.vue'
 
 const nav = [
   { id: 'home', label: '首页' },
+  { id: 'highlights', label: '亮点' },
   { id: 'projects', label: '项目' },
   { id: 'skills', label: '技术栈' },
   { id: 'experience', label: '履历' },
@@ -83,19 +85,34 @@ function scrollTo(id) {
 
     <main>
       <HeroSection :profile="site.profile" />
+      <HighlightsSection :items="site.highlights" />
       <ProjectsSection :projects="site.projects" />
       <SkillsSection :skills="site.skills" />
       <ExperienceSection :experience="site.experience" />
     </main>
 
     <footer class="footer">
-      <p class="footer__name">{{ site.profile.name }} · {{ site.profile.tagline }}</p>
-      <p class="footer__meta">
-        © {{ new Date().getFullYear() }} · Built with Vite + Vue
-        <a v-for="s in site.profile.socials" :key="s.label" :href="s.url" target="_blank" rel="noopener">
-          {{ s.label }}
-        </a>
-      </p>
+      <div class="footer__inner">
+        <div class="footer__cta">
+          <span class="footer__kicker">Get in touch</span>
+          <p class="footer__title">想聊聊仓储、供应链，或者一个具体的后端问题？</p>
+        </div>
+        <div class="footer__links">
+          <a
+            v-for="s in site.profile.socials"
+            :key="s.label"
+            :href="s.url"
+            target="_blank"
+            rel="noopener"
+            class="btn btn--ghost"
+          >{{ s.label }}</a>
+        </div>
+      </div>
+
+      <div class="footer__base">
+        <span>{{ site.profile.name }} · {{ site.profile.tagline }}</span>
+        <span>© {{ new Date().getFullYear() }} · Built with Vite + Vue</span>
+      </div>
     </footer>
 
     <button class="to-top" v-show="scrolled" @click="scrollTo('home')" aria-label="回到顶部">
